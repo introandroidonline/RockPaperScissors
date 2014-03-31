@@ -1,5 +1,6 @@
 #ignore idea
 .idea/*
+*iml
 
 # Built application files
 *.apk
