@@ -1,5 +1,6 @@
 package com.learninghouse.rockpaperscissors;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,17 +11,23 @@ import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
+    private RockPaperScissorsApplication mApp = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mApp = (RockPaperScissorsApplication)getApplication();
+
         Button btnRock = (Button)findViewById(R.id.btnRock);
         btnRock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mApp.setPlayerSelection(RockPaperScissorType.ROCK);
                 Toast.makeText(getApplicationContext(),"Rock Button clicked",Toast.LENGTH_LONG).show();
+                Intent resultIntent = new Intent(MainActivity.this, RockPaperScissiorsResultActivity.class);
+                startActivity(resultIntent);
             }
         });
 
@@ -28,7 +35,10 @@ public class MainActivity extends ActionBarActivity {
         btnPaper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mApp.setPlayerSelection(RockPaperScissorType.PAPER);
                 Toast.makeText(getApplicationContext(),"Paper Button clicked", Toast.LENGTH_LONG).show();
+                Intent resultIntent = new Intent(MainActivity.this, RockPaperScissiorsResultActivity.class);
+                startActivity(resultIntent);
             }
         });
 
@@ -36,11 +46,13 @@ public class MainActivity extends ActionBarActivity {
         btnScissors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mApp.setPlayerSelection(RockPaperScissorType.SCISSORS);
                 Toast.makeText(getApplicationContext(),"Scissors Button was clicked", Toast.LENGTH_LONG).show();
+                Intent resultIntent = new Intent(MainActivity.this, RockPaperScissiorsResultActivity.class);
+                startActivity(resultIntent);
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
